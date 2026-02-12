@@ -70,4 +70,25 @@ test("procesar devuelve estructura JSON consistente", () => {
   assert.deepEqual(Object.keys(res.body).sort(), ["longitud", "resultado"]);
 });
 
+test("procesar devuelve error 500 cuando nombre es 'error'", () => {
+  const req = { query: { nombre: "error" } };
 
+  const res = {
+    statusCode: null,
+    body: null,
+    status(code) {
+      this.statusCode = code;
+      return this;
+    },
+    json(payload) {
+      this.body = payload;
+      return this;
+    }
+  };
+
+  handler(req, res);
+
+  assert.equal(res.statusCode, 500);
+  assert.ok(res.body.error);
+  assert.equal(res.body.error, "Error al procesar el nombre");
+});
