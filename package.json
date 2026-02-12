@@ -6,3 +6,5 @@
   "scripts": {
     "test": "node --test"
   }
+}
+
