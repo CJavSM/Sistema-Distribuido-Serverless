@@ -7,7 +7,7 @@ export default function handler(req, res) {
       error: "Error al procesar el nombre"
     });
   }
-
+//Función nombre procesado, se convierte a mayúsculas y se devuelve la longitud del nombre
   res.status(200).json({
     resultado: `Nombre procesado: ${nombre.toUpperCase()}`,
     longitud: nombre.length
